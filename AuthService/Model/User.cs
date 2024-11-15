@@ -10,8 +10,8 @@ public class User
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
 
-    public string? Email { get; set; }
-    public string? PasswordHash { get; set; }
+    public required string Email { get; set; }
+    public required string PasswordHash { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public DateTime Birthday { get; set; }

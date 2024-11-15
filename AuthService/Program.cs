@@ -1,9 +1,27 @@
+using AuthService.Properties;
+using AuthService.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// User secrets
+if (builder.Environment.IsDevelopment()) builder.Configuration.AddUserSecrets<Program>();
 
+// Database connection
+builder.Services.Configure<UserDatabaseSettings>(
+    builder.Configuration.GetSection("UserDatabase")
+);
+
+// Jwt Settings
+var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
+var secretKey = jwtSettingsSection.GetValue<string>("SecretKey");
+
+// Add services to the container.
+builder.Services.AddSingleton<AuthControllerService>();
+
+// Add Controllers
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Add Swagger Endpoints (For development)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
