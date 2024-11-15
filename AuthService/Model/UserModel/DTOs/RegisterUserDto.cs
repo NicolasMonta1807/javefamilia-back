@@ -1,6 +1,6 @@
 using AuthService.Model.Enum;
 
-namespace AuthService.Model.DTOs;
+namespace AuthService.Model.UserModel.DTOs;
 
 public class RegisterUserDto
 {

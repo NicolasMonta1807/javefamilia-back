@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using AuthService.Properties;
 using AuthService.Service;
 
@@ -10,6 +11,14 @@ if (builder.Environment.IsDevelopment()) builder.Configuration.AddUserSecrets<Pr
 builder.Services.Configure<UserDatabaseSettings>(
     builder.Configuration.GetSection("UserDatabase")
 );
+
+// Enum deserialization
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
 
 // Jwt Settings
 var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");

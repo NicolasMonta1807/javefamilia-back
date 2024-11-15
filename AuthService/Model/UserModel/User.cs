@@ -2,7 +2,7 @@ using AuthService.Model.Enum;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace AuthService.Model;
+namespace AuthService.Model.UserModel;
 
 public class User
 {
@@ -12,12 +12,12 @@ public class User
 
     public required string Email { get; set; }
     public required string PasswordHash { get; set; }
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
     public DateTime Birthday { get; set; }
     public string? PhoneNumber { get; set; }
     public DateTime DateJoined { get; set; }
     public Role Role { get; set; }
-    public TipoDocumento? TipoDocumento { get; set; }
-    public string? Document { get; set; }
+    public required TipoDocumento TipoDocumento { get; set; }
+    public required string Document { get; set; }
 }

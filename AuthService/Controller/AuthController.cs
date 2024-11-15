@@ -1,6 +1,7 @@
-using AuthService.Model;
+using AuthService.Model.UserModel.DTOs;
 using AuthService.Service;
 using Microsoft.AspNetCore.Mvc;
+using LoginRequest = AuthService.Model.LoginRequest;
 
 namespace AuthService.Controller;
 
@@ -22,5 +23,16 @@ public class AuthController : ControllerBase
 
         if (token is null) return Unauthorized();
         return Ok(new { Token = token });
+    }
+
+    [HttpPost("register-na")]
+    public async Task<IActionResult> RegisterNonAffiliate([FromBody] RegisterUserDto request)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var success = await _authService.RegisterNonAffiliateUserAsync(request);
+        if (!success) return BadRequest("User with this email already exists");
+
+        return Ok(new { Success = success, Message = "User registered" });
     }
 }
