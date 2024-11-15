@@ -82,6 +82,30 @@ public class AuthControllerService
         return true;
     }
 
+    public async Task<bool> RegisterAffiliateUserAsync(RegisterUserDto newUser)
+    {
+        var existingUser = await _users.Find(u => u.Email == newUser.Email).FirstOrDefaultAsync();
+        if (existingUser != null)
+            return false;
+
+        var userToRegister = new User
+        {
+            Email = newUser.Email,
+            Birthday = newUser.Birthday,
+            DateJoined = DateTime.Now,
+            TipoDocumento = newUser.TipoDocumento,
+            Document = newUser.Document,
+            FirstName = newUser.FirstName,
+            LastName = newUser.LastName,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(newUser.Password),
+            PhoneNumber = newUser.PhoneNumber,
+            Role = Role.Afiliado
+        };
+
+        await _users.InsertOneAsync(userToRegister);
+        return true;
+    }
+
     private static bool VerifyPassword(string password, string passwordHash)
     {
         return BCrypt.Net.BCrypt.Verify(password, passwordHash);
