@@ -2,18 +2,39 @@ using System.Text;
 using System.Text.Json.Serialization;
 using AuthService.Properties;
 using AuthService.Service;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// User secrets
-if (builder.Environment.IsDevelopment()) builder.Configuration.AddUserSecrets<Program>();
+// KeyVault Load
+var keyvaultUrl = builder.Configuration.GetSection("KeyVault:KeyVaultUrl");
+var keyvaultClientId = builder.Configuration.GetSection("KeyVault:ClientId");
+var keyvaultClientSecret = builder.Configuration.GetSection("KeyVault:ClientSecret");
+var keyvaultDirectoryId = builder.Configuration.GetSection("KeyVault:DirectoryId");
+
+var credential =
+    new ClientSecretCredential(keyvaultDirectoryId.Value!, keyvaultClientId.Value!, keyvaultClientSecret.Value!);
+
+builder.Configuration.AddAzureKeyVault(keyvaultUrl.Value!, keyvaultClientId.Value!, keyvaultClientSecret.Value!,
+    new DefaultKeyVaultSecretManager());
+
+var secretClient = new SecretClient(new Uri(keyvaultUrl.Value!), credential);
 
 // Database connection
-builder.Services.Configure<UserDatabaseSettings>(
-    builder.Configuration.GetSection("UserDatabase")
-);
+KeyVaultSecret dbConnectionStringSecret = secretClient.GetSecret("UserDatabase--ConnectionString");
+KeyVaultSecret dbConnectionDatabaseName = secretClient.GetSecret("UserDatabase--DatabaseName");
+KeyVaultSecret dbConnectionCollectionName = secretClient.GetSecret("UserDatabase--CollectionName");
+
+builder.Services.Configure<UserDatabaseSettings>(options =>
+{
+    options.ConnectionString = dbConnectionStringSecret.Value;
+    options.DatabaseName = dbConnectionDatabaseName.Value;
+    options.CollectionName = dbConnectionCollectionName.Value;
+});
 
 // Enum deserialization
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -22,10 +43,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
-
 // Jwt Settings
-var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
-var secretKey = jwtSettingsSection.GetValue<string>("SecretKey");
+KeyVaultSecret jwtSecret = secretClient.GetSecret("JwtSettings--SecretKey");
 
 builder.Services.AddAuthentication(options =>
     {
@@ -41,7 +60,7 @@ builder.Services.AddAuthentication(options =>
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = "javefamilia.org",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret.Value))
         };
     });
 
