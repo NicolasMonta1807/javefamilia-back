@@ -12,7 +12,10 @@ namespace EspacioService.Model
         public string Description { get; set; }
         public TimeSpan OpeningTime { get; set; }
         public TimeSpan ClosingTime { get; set; }
-        public int capacidad { get; set; }
+        public int Capacity { get; set; }
+        public double AffiliateRate { get; set; }
+        public double NonAffiliateRate { get; set; }
+        public double BeneficiaryRate { get; set; }
         public List<HorarioEspacio> Horarios { get; set; } = new List<HorarioEspacio>();
     }
 }
