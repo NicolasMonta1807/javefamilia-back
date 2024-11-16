@@ -123,6 +123,132 @@
         "AuthenticationProviderKey": "BearerAuth",
         "AllowedScopes": []
       }
+    },
+    {
+      "DownstreamPathTemplate": "/espacio",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/espacio",
+      "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/espacio/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/espacio/{id}",
+      "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/espacio",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/espacio",
+      "UpstreamHttpMethod": ["Post"],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/addHorario/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/addHorario/{id}",
+      "UpstreamHttpMethod": ["Post"],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/espacio/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/espacio/{id}",
+      "UpstreamHttpMethod": ["Put"],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/updateHorario/{id}/{idHorario}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/updateHorario/{id}/{idHorario}",
+      "UpstreamHttpMethod": ["Put"],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/espacio/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/espacio/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/deleteHorario/{id}/{idHorario}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/deleteHorario/{id}/{idHorario}",
+      "UpstreamHttpMethod": ["Delete"],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
     }
   ],
   "SwaggerEndPoints": [
@@ -142,7 +268,17 @@
         {
           "Name": "Sedes API",
           "Version": "v1",
-          "Url": "http://localhost:5001/swagger/v1/swagger.json"
+          "Url": "http://localhost:8082/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "espacios",
+      "Config": [
+        {
+          "Name": "Espacios API",
+          "Version": "v1",
+          "Url": "http://localhost:8081/swagger/v1/swagger.json"
         }
       ]
     }
