@@ -48,6 +48,81 @@
         "AuthenticationProviderKey": "BearerAuth",
         "AllowedScopes": []
       }
+    },
+    {
+      "DownstreamPathTemplate": "/sedes",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sedes",
+      "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/sedes/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sedes/{id}",
+      "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/sedes",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sedes",
+      "UpstreamHttpMethod": ["Post"],
+      "SwaggerKey": "sedes",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/sedes/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sedes/{id}",
+      "UpstreamHttpMethod": ["Put"],
+      "SwaggerKey": "sedes",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/sedes/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sedes/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "SwaggerKey": "sedes",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
     }
   ],
   "SwaggerEndPoints": [
@@ -58,6 +133,16 @@
           "Name": "Auth API",
           "Version": "v1",
           "Url": "http://localhost:9090/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "sedes",
+      "Config": [
+        {
+          "Name": "Sedes API",
+          "Version": "v1",
+          "Url": "http://localhost:5001/swagger/v1/swagger.json"
         }
       ]
     }
