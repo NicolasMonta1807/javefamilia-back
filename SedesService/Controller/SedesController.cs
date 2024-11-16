@@ -25,7 +25,7 @@ namespace SedesService.Controller
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSedeById(ObjectId id)
+        public async Task<IActionResult> GetSedeById(string id)
         {
             var sede = await _sedeService.GetSedeByIdAsync(id);
             if (sede is null) return NotFound();
@@ -42,7 +42,7 @@ namespace SedesService.Controller
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> UpdateSede(ObjectId id, [FromBody] Sede sede)
+        public async Task<IActionResult> UpdateSede(string id, [FromBody] Sede sede)
         {
             await _sedeService.UpdateSedeAsync(id, sede);
             return Ok();
@@ -50,7 +50,7 @@ namespace SedesService.Controller
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> DeleteSede(ObjectId id)
+        public async Task<IActionResult> DeleteSede(string id)
         {
             await _sedeService.DeleteSedeAsync(id);
             return Ok();

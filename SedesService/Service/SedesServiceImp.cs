@@ -1,11 +1,10 @@
-using SedesService.Model;
-using SedesService.Properties;
+using EspacioService.Model;
+using EspacioService.Properties;
 using System.Text;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using MongoDB.Bson;
 
-namespace SedesService.Service
+namespace EspacioService.Service
 {
     public class SedesServiceImp
     {
@@ -28,7 +27,7 @@ namespace SedesService.Service
             return await _sedes.Find(sede => true).ToListAsync();
         }
 
-        public async Task<Sede> GetSedeByIdAsync(ObjectId id)
+        public async Task<Sede> GetSedeByIdAsync(string id)
         {
             return await _sedes.Find(sede => sede.Id == id).FirstOrDefaultAsync();
         }
@@ -38,12 +37,12 @@ namespace SedesService.Service
             await _sedes.InsertOneAsync(sede);
         }
 
-        public async Task UpdateSedeAsync(ObjectId id, Sede sede)
+        public async Task UpdateSedeAsync(string id, Sede sede)
         {
             await _sedes.ReplaceOneAsync(s => s.Id == id, sede);
         }
 
-        public async Task DeleteSedeAsync(ObjectId id)
+        public async Task DeleteSedeAsync(string id)
         {
             await _sedes.DeleteOneAsync(sede => sede.Id == id);
         }
