@@ -12,7 +12,8 @@
       "UpstreamPathTemplate": "/login",
       "UpstreamHttpMethod": [
         "Post"
-      ]
+      ],
+      "SwaggerKey": "auth"
     },
     {
       "DownstreamPathTemplate": "/auth/register-na",
@@ -26,7 +27,8 @@
       "UpstreamPathTemplate": "/register-na",
       "UpstreamHttpMethod": [
         "Post"
-      ]
+      ],
+      "SwaggerKey": "auth"
     },
     {
       "DownstreamPathTemplate": "/auth/register",
@@ -41,10 +43,23 @@
       "UpstreamHttpMethod": [
         "Post"
       ],
+      "SwaggerKey": "auth",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
         "AllowedScopes": []
       }
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "auth",
+      "Config": [
+        {
+          "Name": "Auth API",
+          "Version": "v1",
+          "Url": "http://localhost:9090/swagger/v1/swagger.json"
+        }
+      ]
     }
   ],
   "GlobalConfiguration": {
