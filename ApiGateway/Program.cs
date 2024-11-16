@@ -29,6 +29,10 @@ builder.Services.AddAuthentication(authenticationProviderKey)
 
 builder.Services.AddOcelot();
 
+// Swagger Ocelot
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerForOcelot(builder.Configuration);
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
@@ -36,6 +40,7 @@ if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSwaggerForOcelotUI();
 app.UseOcelot().Wait();
 
 app.Run();
