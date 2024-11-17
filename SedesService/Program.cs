@@ -1,6 +1,10 @@
+using System.Text;
+using System.Text.Json.Serialization;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.IdentityModel.Tokens;
 using SedesService.Properties;
 using SedesService.Service;
 
@@ -31,6 +35,34 @@ builder.Services.Configure<SedesDatabaseSettings>(options =>
     options.DatabaseName = dbConnectionDatabaseName.Value;
     options.CollectionName = dbConnectionCollectionName.Value;
 });
+
+// Enum deserialization
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
+// Jwt Settings
+KeyVaultSecret jwtSecret = secretClient.GetSecret("JwtSettings--SecretKey");
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "javefamilia.org",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret.Value))
+        };
+    });
 
 // Add services to the container.
 builder.Services.AddSingleton<SedesServiceImp>();
