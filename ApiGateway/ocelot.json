@@ -61,7 +61,8 @@
       "UpstreamPathTemplate": "/api/sedes",
       "UpstreamHttpMethod": [
         "Get"
-      ]
+      ],
+      "SwaggerKey": "sedes"
     },
     {
       "DownstreamPathTemplate": "/sedes/{id}",
@@ -75,7 +76,8 @@
       "UpstreamPathTemplate": "/api/sedes/{id}",
       "UpstreamHttpMethod": [
         "Get"
-      ]
+      ],
+      "SwaggerKey": "sedes"
     },
     {
       "DownstreamPathTemplate": "/sedes",
@@ -146,7 +148,8 @@
       "UpstreamPathTemplate": "/api/espacio",
       "UpstreamHttpMethod": [
         "Get"
-      ]
+      ],
+      "SwaggerKey": "espacios"
     },
     {
       "DownstreamPathTemplate": "/espacio/{id}",
@@ -160,7 +163,8 @@
       "UpstreamPathTemplate": "/api/espacio/{id}",
       "UpstreamHttpMethod": [
         "Get"
-      ]
+      ],
+      "SwaggerKey": "espacios"
     },
     {
       "DownstreamPathTemplate": "/espacio",
