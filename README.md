@@ -11,7 +11,7 @@ Este proyecto utiliza `docker-compose` para el despliegue en un entorno de desar
 
 2. **Ejecutar los contenedores en la raíz del proyecto:**
    ```bash
-   docker-compose up --build
+   docker compose up -d --build
    ```
     * **Para usuarios de Windows:** Ejecuta el comando equivalente en tu terminal de Docker para Windows (por ejemplo, en PowerShell o CMD).
 
