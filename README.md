@@ -18,7 +18,7 @@ Este proyecto utiliza `docker-compose` para el despliegue en un entorno de desar
 3. **Acceso a la Documentación Swagger:**
     - Una vez que los contenedores estén corriendo, accede a la documentación de todos los endpoints a través del API Gateway en:
       ```
-      http://localhost:5050
+      http://localhost:5050/swagger
       ```
     - Aquí encontrarás la documentación Swagger que agrupa todos los endpoints de los microservicios.
 
