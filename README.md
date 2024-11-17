@@ -7,7 +7,7 @@ Este proyecto utiliza `docker-compose` para el despliegue en un entorno de desar
 ### Instrucciones
 
 1. **Esquema del Despliegue de Desarrollo:**
-   ![Diagrama de despliegue](https://github.com/NicolasMonta1807/javefamilia-back/Docs/Deploy.jpg?raw=true)
+   ![Diagrama de despliegue](https://github.com/NicolasMonta1807/javefamilia-back/blob/main/Docs/Deploy.jpg?raw=true)
 
 2. **Ejecutar los contenedores en la raíz del proyecto:**
    ```bash
