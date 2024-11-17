@@ -1,9 +1,8 @@
 using Confluent.Kafka;
 using Newtonsoft.Json;
-using System;
-using System.Threading.Tasks;
 
-namespace EspacioService.Mensajeria{
+namespace EspacioService.Mensajeria;
+
 public class QueueSender
 {
     private readonly IProducer<string, string> _producer;
@@ -31,6 +30,7 @@ public class QueueSender
             Console.WriteLine($"Error enviando mensaje a Kafka: {ex.Error.Reason}");
         }
     }
+
     public async Task SendHorarioEvent(HorarioEvent horarioEvent)
     {
         var message = new Message<string, string>
@@ -47,6 +47,5 @@ public class QueueSender
         {
             Console.WriteLine($"Error enviando mensaje a Kafka: {ex.Error.Reason}");
         }
-}
-}
+    }
 }
