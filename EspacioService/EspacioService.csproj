@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-  <ItemGroup>
+    <ItemGroup>
         <PackageReference Include="Azure.Identity" Version="1.13.1"/>
         <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.7.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11"/>
@@ -15,8 +15,8 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
         <PackageReference Include="MongoDB.Driver" Version="3.0.0"/>
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.0"/>
-        <PackageReference Include="Confluent.Kafka" Version="2.6.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+        <PackageReference Include="Confluent.Kafka" Version="2.6.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+    </ItemGroup>
 
 </Project>

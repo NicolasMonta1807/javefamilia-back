@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EspacioService.Controller;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/espacio")]
 public class EspacioController : ControllerBase
 {
     private readonly Service.EspacioService _espacioService;

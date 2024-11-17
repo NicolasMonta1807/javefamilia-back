@@ -6,7 +6,7 @@ using SedesService.Service;
 namespace SedesService.Controller;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/sedes")]
 public class SedesController : ControllerBase
 {
     private readonly SedesServiceImp _sedeService;
