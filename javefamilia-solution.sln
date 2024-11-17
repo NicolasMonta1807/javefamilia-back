@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService", "AuthService\AuthService.csproj", "{70E9A752-6188-4B0E-A7AB-83C5399BF7FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspacioService", "EspacioService\EspacioService.csproj", "{D7110926-D681-4103-AF81-1FB807242DCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SedesService", "SedesService\SedesService.csproj", "{C70A473E-7F18-4565-825A-E3E5D6FF8299}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +23,13 @@ Global
 		{70E9A752-6188-4B0E-A7AB-83C5399BF7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E9A752-6188-4B0E-A7AB-83C5399BF7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E9A752-6188-4B0E-A7AB-83C5399BF7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7110926-D681-4103-AF81-1FB807242DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7110926-D681-4103-AF81-1FB807242DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7110926-D681-4103-AF81-1FB807242DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7110926-D681-4103-AF81-1FB807242DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C70A473E-7F18-4565-825A-E3E5D6FF8299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C70A473E-7F18-4565-825A-E3E5D6FF8299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C70A473E-7F18-4565-825A-E3E5D6FF8299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C70A473E-7F18-4565-825A-E3E5D6FF8299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

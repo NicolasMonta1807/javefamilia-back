@@ -1,6 +1,6 @@
 namespace EspacioService.Properties;
 
-public class EspacioDatabaseSettings
+public class EspaciosDatabaseSettings
 {
     public string ConnectionString { get; set; } = null!;
     public string DatabaseName { get; set; } = null!;

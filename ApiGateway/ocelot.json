@@ -59,7 +59,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/sedes",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
     },
     {
       "DownstreamPathTemplate": "/sedes/{id}",
@@ -71,7 +73,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/sedes/{id}",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
     },
     {
       "DownstreamPathTemplate": "/sedes",
@@ -83,7 +87,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/sedes",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
       "SwaggerKey": "sedes",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -100,7 +106,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/sedes/{id}",
-      "UpstreamHttpMethod": ["Put"],
+      "UpstreamHttpMethod": [
+        "Put"
+      ],
       "SwaggerKey": "sedes",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -117,7 +125,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/sedes/{id}",
-      "UpstreamHttpMethod": ["Delete"],
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
       "SwaggerKey": "sedes",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -134,7 +144,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/espacio",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
     },
     {
       "DownstreamPathTemplate": "/espacio/{id}",
@@ -146,7 +158,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/espacio/{id}",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
     },
     {
       "DownstreamPathTemplate": "/espacio",
@@ -158,7 +172,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/espacio",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
       "SwaggerKey": "espacios",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -175,7 +191,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/addHorario/{id}",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
       "SwaggerKey": "espacios",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -192,7 +210,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/espacio/{id}",
-      "UpstreamHttpMethod": ["Put"],
+      "UpstreamHttpMethod": [
+        "Put"
+      ],
       "SwaggerKey": "espacios",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -209,7 +229,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/updateHorario/{id}/{idHorario}",
-      "UpstreamHttpMethod": ["Put"],
+      "UpstreamHttpMethod": [
+        "Put"
+      ],
       "SwaggerKey": "espacios",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -226,7 +248,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/espacio/{id}",
-      "UpstreamHttpMethod": ["Delete"],
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
       "SwaggerKey": "espacios",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
@@ -243,7 +267,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/deleteHorario/{id}/{idHorario}",
-      "UpstreamHttpMethod": ["Delete"],
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
       "SwaggerKey": "espacios",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
