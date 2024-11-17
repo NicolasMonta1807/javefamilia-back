@@ -1,16 +1,70 @@
-using EspacioService.Properties;
-using EspacioService.Service;
 using System.Text;
 using System.Text.Json.Serialization;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using EspacioService.Properties;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// KeyVault Load
+var keyvaultUrl = builder.Configuration.GetSection("KeyVault:KeyVaultUrl");
+var keyvaultClientId = builder.Configuration.GetSection("KeyVault:ClientId");
+var keyvaultClientSecret = builder.Configuration.GetSection("KeyVault:ClientSecret");
+var keyvaultDirectoryId = builder.Configuration.GetSection("KeyVault:DirectoryId");
+
+var credential =
+    new ClientSecretCredential(keyvaultDirectoryId.Value!, keyvaultClientId.Value!, keyvaultClientSecret.Value!);
+
+builder.Configuration.AddAzureKeyVault(keyvaultUrl.Value!, keyvaultClientId.Value!, keyvaultClientSecret.Value!,
+    new DefaultKeyVaultSecretManager());
+
+var secretClient = new SecretClient(new Uri(keyvaultUrl.Value!), credential);
+
 // Database connection
-builder.Services.Configure<EspacioDatabaseSettings>(
-    builder.Configuration.GetSection("EspacioDatabase")); 
+KeyVaultSecret dbConnectionStringSecret = secretClient.GetSecret("EspaciosDatabase--ConnectionString");
+KeyVaultSecret dbConnectionDatabaseName = secretClient.GetSecret("EspaciosDatabase--DatabaseName");
+KeyVaultSecret dbConnectionCollectionName = secretClient.GetSecret("EspaciosDatabase--CollectionName");
+
+builder.Services.Configure<EspaciosDatabaseSettings>(options =>
+{
+    options.ConnectionString = dbConnectionStringSecret.Value;
+    options.DatabaseName = dbConnectionDatabaseName.Value;
+    options.CollectionName = dbConnectionCollectionName.Value;
+});
+
+// Enum deserialization
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
+// Jwt Settings
+KeyVaultSecret jwtSecret = secretClient.GetSecret("JwtSettings--SecretKey");
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "javefamilia.org",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret.Value))
+        };
+    });
 
 // Add services to the container.
-builder.Services.AddSingleton<EspacioServiceImp>();
+builder.Services.AddSingleton<EspacioService.Service.EspacioService>();
 
 // Add Controllers
 builder.Services.AddControllers();
