@@ -1,11 +1,36 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
 using SedesService.Properties;
 using SedesService.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// KeyVault Load
+var keyvaultUrl = builder.Configuration.GetSection("KeyVault:KeyVaultUrl");
+var keyvaultClientId = builder.Configuration.GetSection("KeyVault:ClientId");
+var keyvaultClientSecret = builder.Configuration.GetSection("KeyVault:ClientSecret");
+var keyvaultDirectoryId = builder.Configuration.GetSection("KeyVault:DirectoryId");
+
+var credential =
+    new ClientSecretCredential(keyvaultDirectoryId.Value!, keyvaultClientId.Value!, keyvaultClientSecret.Value!);
+
+builder.Configuration.AddAzureKeyVault(keyvaultUrl.Value!, keyvaultClientId.Value!, keyvaultClientSecret.Value!,
+    new DefaultKeyVaultSecretManager());
+
+var secretClient = new SecretClient(new Uri(keyvaultUrl.Value!), credential);
+
 // Database connection
-builder.Services.Configure<SedesDatabaseSettings>(
-    builder.Configuration.GetSection("SedeDatabase"));
+KeyVaultSecret dbConnectionStringSecret = secretClient.GetSecret("SedesDatabase--ConnectionString");
+KeyVaultSecret dbConnectionDatabaseName = secretClient.GetSecret("SedesDatabase--DatabaseName");
+KeyVaultSecret dbConnectionCollectionName = secretClient.GetSecret("SedesDatabase--CollectionName");
+
+builder.Services.Configure<SedesDatabaseSettings>(options =>
+{
+    options.ConnectionString = dbConnectionStringSecret.Value;
+    options.DatabaseName = dbConnectionDatabaseName.Value;
+    options.CollectionName = dbConnectionCollectionName.Value;
+});
 
 // Add services to the container.
 builder.Services.AddSingleton<SedesServiceImp>();
