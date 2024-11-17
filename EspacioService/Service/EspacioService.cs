@@ -6,11 +6,11 @@ using MongoDB.Driver;
 
 namespace EspacioService.Service;
 
-public class EspacioServiceImp
+public class EspacioService
 {
     private readonly IMongoCollection<Espacio> _espacios;
 
-    public EspacioServiceImp(IOptions<EspaciosDatabaseSettings> espacioDatabaseSettings)
+    public EspacioService(IOptions<EspaciosDatabaseSettings> espacioDatabaseSettings)
     {
         var mongoClient = new MongoClient(
             espacioDatabaseSettings.Value.ConnectionString);

@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using EspacioService.Properties;
-using EspacioService.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.IdentityModel.Tokens;
@@ -65,7 +64,7 @@ builder.Services.AddAuthentication(options =>
     });
 
 // Add services to the container.
-builder.Services.AddSingleton<EspacioServiceImp>();
+builder.Services.AddSingleton<EspacioService.Service.EspacioService>();
 
 // Add Controllers
 builder.Services.AddControllers();

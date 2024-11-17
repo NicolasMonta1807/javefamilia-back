@@ -1,5 +1,4 @@
 using EspacioService.Model;
-using EspacioService.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +8,9 @@ namespace EspacioService.Controller;
 [Route("[controller]")]
 public class EspacioController : ControllerBase
 {
-    private readonly EspacioServiceImp _espacioService;
+    private readonly Service.EspacioService _espacioService;
 
-    public EspacioController(EspacioServiceImp espacioService)
+    public EspacioController(Service.EspacioService espacioService)
     {
         _espacioService = espacioService;
     }
@@ -32,7 +31,7 @@ public class EspacioController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> CreateEspacio([FromBody] Espacio espacio)
     {
         await _espacioService.CreateEspacioAsync(espacio);
@@ -40,7 +39,7 @@ public class EspacioController : ControllerBase
     }
 
     [HttpPost("/addHorario/{id}")]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> AddHorario(string id, [FromBody] HorarioEspacio horario)
     {
         await _espacioService.AddHorarioAsync(id, horario);
@@ -48,7 +47,7 @@ public class EspacioController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> UpdateEspacio(string id, [FromBody] Espacio espacio)
     {
         await _espacioService.UpdateEspacioAsync(id, espacio);
@@ -56,7 +55,7 @@ public class EspacioController : ControllerBase
     }
 
     [HttpPut("/updateHorario/{id}/{idHorario}")]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> UpdateHorario(string id, string idHorario, [FromBody] HorarioEspacio horario)
     {
         await _espacioService.UpdateHorarioAsync(id, idHorario, horario);
@@ -64,7 +63,7 @@ public class EspacioController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> DeleteEspacio(string id)
     {
         await _espacioService.DeleteEspacioAsync(id);
@@ -72,7 +71,7 @@ public class EspacioController : ControllerBase
     }
 
     [HttpDelete("/deleteHorario/{id}/{idHorario}")]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> DeleteHorario(string id, string idHorario)
     {
         await _espacioService.DeleteHorarioAsync(id, idHorario);
