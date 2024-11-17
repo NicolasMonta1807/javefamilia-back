@@ -5,8 +5,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 9090
+          "Host": "authservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/login",
@@ -20,8 +20,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 9090
+          "Host": "authservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/register-na",
@@ -35,8 +35,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 9090
+          "Host": "authservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/register",
@@ -54,8 +54,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8082
+          "Host": "sedesservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/sedes",
@@ -69,8 +69,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8082
+          "Host": "sedesservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/sedes/{id}",
@@ -84,8 +84,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8082
+          "Host": "sedesservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/sedes",
@@ -103,8 +103,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8082
+          "Host": "sedesservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/sedes/{id}",
@@ -122,8 +122,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8082
+          "Host": "sedesservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/sedes/{id}",
@@ -141,8 +141,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/espacio",
@@ -156,8 +156,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/espacio/{id}",
@@ -171,8 +171,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/espacio",
@@ -190,8 +190,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/addHorario/{id}",
@@ -209,8 +209,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/espacio/{id}",
@@ -228,8 +228,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/updateHorario/{id}/{idHorario}",
@@ -247,8 +247,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/espacio/{id}",
@@ -266,8 +266,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8081
+          "Host": "espacioservice",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/deleteHorario/{id}/{idHorario}",
@@ -288,7 +288,7 @@
         {
           "Name": "Auth API",
           "Version": "v1",
-          "Url": "http://localhost:9090/swagger/v1/swagger.json"
+          "Url": "http://authservice:8080/swagger/v1/swagger.json"
         }
       ]
     },
@@ -298,7 +298,7 @@
         {
           "Name": "Sedes API",
           "Version": "v1",
-          "Url": "http://localhost:8082/swagger/v1/swagger.json"
+          "Url": "http://sedesservice:8080/swagger/v1/swagger.json"
         }
       ]
     },
@@ -308,7 +308,7 @@
         {
           "Name": "Espacios API",
           "Version": "v1",
-          "Url": "http://localhost:8081/swagger/v1/swagger.json"
+          "Url": "http://espacioservice:8080/swagger/v1/swagger.json"
         }
       ]
     }
