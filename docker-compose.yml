@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  apigateway:
+  api-gateway:
     build:
       context: ./ApiGateway
       dockerfile: Dockerfile
@@ -10,13 +10,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      - authservice
-      - espacioservice
-      - sedesservice
+      - auth-service
+      - espacios-service
+      - sedes-service
     networks:
       - app-network
 
-  authservice:
+  auth-service:
     build:
       context: ./AuthService
       dockerfile: Dockerfile
@@ -27,7 +27,7 @@ services:
     networks:
       - app-network
   
-  espacioservice:
+  espacios-service:
     build:
       context: ./EspacioService
       dockerfile: Dockerfile
@@ -38,7 +38,7 @@ services:
     networks:
       - app-network
   
-  sedesservice:
+  sedes-service:
     build:
       context: ./SedesService
       dockerfile: Dockerfile

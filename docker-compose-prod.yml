@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    image: nicolasmonta1807/api-gateway:latest
+    ports:
+      - "5050:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - auth-service
+      - espacios-service
+      - sedes-service
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname == eva00
+
+  auth-service:
+    image: nicolasmonta1807/auth-service:latest
+    ports:
+      - "9090:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+  
+  espacios-service:
+    image: nicolasmonta1807/espacios-service:latest
+    ports:
+      - "8081:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+  
+  sedes-service:
+    image: nicolasmonta1807/sedes-service:latest
+    ports:
+      - "8082:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+
+networks:
+  app-network:
+    driver: overlay
