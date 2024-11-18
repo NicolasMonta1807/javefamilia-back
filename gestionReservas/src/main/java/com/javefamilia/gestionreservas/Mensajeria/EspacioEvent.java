@@ -2,9 +2,11 @@ package com.javefamilia.gestionreservas.Mensajeria;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.javefamilia.gestionreservas.Model.EspacioEventType;
+import com.javefamilia.gestionreservas.Mapper.TimeDeserializer;
+import com.javefamilia.gestionreservas.Model.Enum.EspacioEventType;
 import com.javefamilia.gestionreservas.Model.HorarioEspacio;
 
+import java.sql.Time;
 import java.time.Duration;
 import java.util.List;
 
@@ -23,12 +25,12 @@ public class EspacioEvent {
     private String Description;
 
     @JsonProperty("OpeningTime")
-    @JsonDeserialize(using = DurationDeserializer.class)
-    private Duration OpeningTime;
+    @JsonDeserialize(using = TimeDeserializer.class)
+    private Time OpeningTime;
 
     @JsonProperty("ClosingTime")
-    @JsonDeserialize(using = DurationDeserializer.class)
-    private Duration ClosingTime;
+    @JsonDeserialize(using = TimeDeserializer.class)
+    private Time ClosingTime;
 
     @JsonProperty("Capacity")
     private int Capacity;
@@ -47,7 +49,7 @@ public class EspacioEvent {
 
     // Constructor con todos los parámetros
     public EspacioEvent(EspacioEventType eventType, String id, String name, String description,
-                        Duration openingTime, Duration closingTime, int capacity, double affiliateRate,
+                        Time openingTime, Time closingTime, int capacity, double affiliateRate,
                         double nonAffiliateRate, double beneficiaryRate, List<HorarioEspacio> horarios) {
         EventType = eventType;
         Id = id;
@@ -104,19 +106,19 @@ public class EspacioEvent {
         this.Description = description;
     }
 
-    public Duration getOpeningTime() {
+    public Time getOpeningTime() {
         return OpeningTime;
     }
 
-    public void setOpeningTime(Duration openingTime) {
+    public void setOpeningTime(Time openingTime) {
         this.OpeningTime = openingTime;
     }
 
-    public Duration getClosingTime() {
+    public Time getClosingTime() {
         return ClosingTime;
     }
 
-    public void setClosingTime(Duration closingTime) {
+    public void setClosingTime(Time closingTime) {
         this.ClosingTime = closingTime;
     }
 

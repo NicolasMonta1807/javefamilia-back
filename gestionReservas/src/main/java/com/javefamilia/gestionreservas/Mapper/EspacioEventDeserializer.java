@@ -1,7 +1,8 @@
-package com.javefamilia.gestionreservas.Mensajeria;
+package com.javefamilia.gestionreservas.Mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.javefamilia.gestionreservas.Mensajeria.EspacioEvent;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.util.Map;

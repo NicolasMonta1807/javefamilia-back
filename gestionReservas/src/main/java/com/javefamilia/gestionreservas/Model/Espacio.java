@@ -1,55 +1,59 @@
 package com.javefamilia.gestionreservas.Model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
-import java.time.Duration;
+import java.sql.Time;
 import java.util.List;
 
 @Entity
-@Table(name = "espacios")
-public class Espacio {
-
+@NamedQuery(name = "Espacio.findAll", query = "SELECT e FROM Espacio e")
+public class Espacio implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Generación automática de ID
-    @Column(name = "Id")
-    private Long Id;
+    private String Id;
 
-    @Column(name = "Name", nullable = false)
     private String Name;
 
-    @Column(name = "Description", nullable = false)
     private String Description;
 
-    @Column(name = "OpeningTime", nullable = false)
-    private Duration OpeningTime;
+    private Time OpeningTime;
 
-    @Column(name = "ClosingTime", nullable = false)
-    private Duration ClosingTime;
+    private Time ClosingTime;
 
-    @Column(name = "Capacity", nullable = false)
     private int Capacity;
 
-    @Column(name = "AffiliateRate", nullable = false)
     private double AffiliateRate;
 
-    @Column(name = "NonAffiliateRate", nullable = false)
     private double NonAffiliateRate;
 
-    @Column(name = "BeneficiaryRate", nullable = false)
     private double BeneficiaryRate;
 
     @OneToMany(mappedBy = "espacio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HorarioEspacio> Horarios;
 
     // Constructor
+    public Espacio(String Id, String Name, String Description, Time OpeningTime,
+                   Time ClosingTime, int Capacity, double AffiliateRate,
+                   double NonAffiliateRate, double BeneficiaryRate, List<HorarioEspacio> Horarios) {
+        this.Id = Id;
+        this.Name = Name;
+        this.Description = Description;
+        this.OpeningTime = OpeningTime;
+        this.ClosingTime = ClosingTime;
+        this.Capacity = Capacity;
+        this.AffiliateRate = AffiliateRate;
+        this.NonAffiliateRate = NonAffiliateRate;
+        this.BeneficiaryRate = BeneficiaryRate;
+        this.Horarios = Horarios;
+    }
     public Espacio() {}
-
     // Getters y setters
-    public Long getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(Long Id) {
+    public void setId(String id) {
         this.Id = Id;
     }
 
@@ -69,19 +73,19 @@ public class Espacio {
         this.Description = Description;
     }
 
-    public Duration getOpeningTime() {
+    public Time getOpeningTime() {
         return OpeningTime;
     }
 
-    public void setOpeningTime(Duration OpeningTime) {
+    public void setOpeningTime(Time OpeningTime) {
         this.OpeningTime = OpeningTime;
     }
 
-    public Duration getClosingTime() {
+    public Time getClosingTime() {
         return ClosingTime;
     }
 
-    public void setClosingTime(Duration ClosingTime) {
+    public void setClosingTime(Time ClosingTime) {
         this.ClosingTime = ClosingTime;
     }
 

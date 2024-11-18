@@ -2,34 +2,29 @@ package com.javefamilia.gestionreservas.Model;
 
 import com.javefamilia.gestionreservas.Model.Enum.EstadoPago;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "reserva")
-public class Reserva {
+@NamedQuery(name = "Reserva.findAll", query = "SELECT r FROM Reserva r")
+public class Reserva implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
     private Integer Id;
 
-    @Column(name = "UsuarioId")
     private String UsuarioId;
 
-    @Column(name = "EspacioId")
     private String EspacioId;
 
-    @Column(name = "HorarioId")
     private String HorarioId;
 
-    @Column(name = "FechaAgendamiento")
     private LocalDate FechaAgendamiento;
 
-    @Column(name = "FechaReserva")
     private LocalDate FechaReserva;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "EstadoPago")
     private EstadoPago EstadoPago;
 
     // Getters y Setters
