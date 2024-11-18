@@ -1,4 +1,4 @@
-package com.javefamilia.gestionreservas.Model;
+package com.javefamilia.gestionreservas.Model.Enum;
 
 public enum EspacioEventType {
     ESPACIO_CREATED,

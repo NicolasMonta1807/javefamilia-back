@@ -1,15 +1,15 @@
-package com.javefamilia.gestionreservas.Mensajeria;
+package com.javefamilia.gestionreservas.Mapper;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import java.io.IOException;
-import java.time.Duration;
+import java.sql.Time;
 
-public class DurationDeserializer extends JsonDeserializer<Duration> {
+public class TimeDeserializer extends JsonDeserializer<Time> {
 
     @Override
-    public Duration deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public Time deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         String timeString = p.getText().trim();
         // Asumimos que la cadena está en formato "HH:mm:ss"
         String[] parts = timeString.split(":");
@@ -21,6 +21,6 @@ public class DurationDeserializer extends JsonDeserializer<Duration> {
         int hours = Integer.parseInt(parts[0]);
         int minutes = Integer.parseInt(parts[1]);
         int seconds = Integer.parseInt(parts[2]);
-        return Duration.ofHours(hours).plusMinutes(minutes).plusSeconds(seconds);
+        return Time.valueOf(String.format("%02d:%02d:%02d", hours, minutes, seconds));
     }
 }

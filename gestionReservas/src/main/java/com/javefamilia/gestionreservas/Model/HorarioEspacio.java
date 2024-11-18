@@ -1,11 +1,12 @@
 package com.javefamilia.gestionreservas.Model;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.time.Duration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.javefamilia.gestionreservas.Mensajeria.DurationDeserializer;
+import com.javefamilia.gestionreservas.Mapper.TimeDeserializer;
 import jakarta.persistence.*;
 
 /**
@@ -16,9 +17,7 @@ import jakarta.persistence.*;
 @NamedQuery(name="HorarioEspacio.findAll", query="SELECT h FROM HorarioEspacio h")
 public class HorarioEspacio implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("Id")  // Mapea explícitamente "Id" del JSON al atributo "id" en Java
     private String id;
 
@@ -26,15 +25,15 @@ public class HorarioEspacio implements Serializable {
     private boolean availability;
 
     @JsonProperty("StartTime")
-    @JsonDeserialize(using = DurationDeserializer.class)
-    private Duration startTime;
+    @JsonDeserialize(using = TimeDeserializer.class)
+    private Time startTime;
 
     @JsonProperty("EndTime")
-    @JsonDeserialize(using = DurationDeserializer.class)
-    private Duration endTime;
+    @JsonDeserialize(using = TimeDeserializer.class)
+    private Time endTime;
 
     @ManyToOne
-    @JoinColumn(name = "Id") // Este "Id" debe hacer referencia a la columna en la base de datos
+    @JoinColumn(name = "Id_espacio")
     private Espacio espacio;
 
     // Getters y Setters
@@ -55,19 +54,19 @@ public class HorarioEspacio implements Serializable {
         this.availability = availability;
     }
 
-    public Duration getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Duration startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public Duration getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Duration endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
@@ -78,4 +77,5 @@ public class HorarioEspacio implements Serializable {
     public void setEspacio(Espacio espacio) {
         this.espacio = espacio;
     }
+
 }
