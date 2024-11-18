@@ -139,7 +139,7 @@
             <datasources>
                 <xa-datasource jndi-name="java:/jdbc/JavefamiliaDS" pool-name="JavefamiliaDS">
                     <xa-datasource-property name="ServerName">
-                        52.201.96.26
+                        52.205.242.11
                     </xa-datasource-property>
                     <xa-datasource-property name="portNumber">
                         3306
