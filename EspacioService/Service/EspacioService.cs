@@ -17,7 +17,7 @@ namespace EspacioService.Service
             var mongoClient = new MongoClient(espacioDatabaseSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(espacioDatabaseSettings.Value.DatabaseName);
             _espacios = mongoDatabase.GetCollection<Espacio>(espacioDatabaseSettings.Value.CollectionName);
-            _kafkaProducer = new QueueSender("localhost:9092");
+            _kafkaProducer = new QueueSender("kafka:9092");
         }
 
         public async Task<List<Espacio>> GetEspaciosAsync()
@@ -32,7 +32,7 @@ namespace EspacioService.Service
 
         public async Task CreateEspacioAsync(Espacio espacio)
         {
-            
+
             for (var i = 0; i < espacio.Horarios.Count; i++)
                 espacio.Horarios[i].Id = ObjectId.GenerateNewId().ToString();
             await _espacios.InsertOneAsync(espacio);

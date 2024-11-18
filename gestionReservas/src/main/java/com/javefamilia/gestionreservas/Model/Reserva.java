@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @NamedQuery(name = "Reserva.findAll", query = "SELECT r FROM Reserva r")
+@Table(name = "reserva")
 public class Reserva implements Serializable {
 
     @Id

@@ -9,7 +9,8 @@ import java.util.List;
 
 @Entity
 @NamedQuery(name = "Espacio.findAll", query = "SELECT e FROM Espacio e")
-public class Espacio implements Serializable{
+@Table(name = "espacios")
+public class Espacio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String Id;
@@ -36,8 +37,8 @@ public class Espacio implements Serializable{
 
     // Constructor
     public Espacio(String Id, String Name, String Description, Time OpeningTime,
-                   Time ClosingTime, int Capacity, double AffiliateRate,
-                   double NonAffiliateRate, double BeneficiaryRate, List<HorarioEspacio> Horarios) {
+            Time ClosingTime, int Capacity, double AffiliateRate,
+            double NonAffiliateRate, double BeneficiaryRate, List<HorarioEspacio> Horarios) {
         this.Id = Id;
         this.Name = Name;
         this.Description = Description;
@@ -49,7 +50,10 @@ public class Espacio implements Serializable{
         this.BeneficiaryRate = BeneficiaryRate;
         this.Horarios = Horarios;
     }
-    public Espacio() {}
+
+    public Espacio() {
+    }
+
     // Getters y setters
     public String getId() {
         return Id;

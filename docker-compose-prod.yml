@@ -11,6 +11,7 @@ services:
       - auth-service
       - espacios-service
       - sedes-service
+      - gestion-reservas
     networks:
       - app-network
     deploy:
@@ -59,6 +60,63 @@ services:
       - "8082:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+  
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    ports:
+      - "2181:2181"
+    networks:
+      - app-network
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+
+  kafka:
+    image: bitnami/kafka:latest
+    ports:
+      - "9092:9092"
+    networks:
+      - app-network
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+  
+  gestion-reservas:
+    image: nicolasmonta1807/gestion-reservas
+    ports:
+      - "8083:8083"
+      - "9993:9993"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - mp.messaging.connector.smallrye-kafka.bootstrap.servers=kafka:9092
+    depends_on:
+      - zookeeper
+      - kafka
     networks:
       - app-network
     deploy:
