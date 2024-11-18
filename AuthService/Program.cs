@@ -62,6 +62,7 @@ builder.Services.AddAuthentication(options =>
             ValidIssuer = "javefamilia.org",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret.Value))
         };
+        options.MapInboundClaims = false;
     });
 
 
