@@ -45,8 +45,9 @@ public class AuthControllerService
         {
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id!),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email)
             }),
             Expires = DateTime.UtcNow.AddHours(24),
             SigningCredentials =
