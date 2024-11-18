@@ -1,5 +1,6 @@
 package com.javefamilia.gestionreservas.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -29,7 +30,8 @@ public class Espacio implements Serializable{
 
     private double BeneficiaryRate;
 
-    @OneToMany(mappedBy = "espacio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "espacio", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<HorarioEspacio> Horarios;
 
     // Constructor
