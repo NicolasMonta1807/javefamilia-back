@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.time.Duration;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.javefamilia.gestionreservas.Mapper.TimeDeserializer;
@@ -34,6 +35,7 @@ public class HorarioEspacio implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "Id_espacio")
+    @JsonBackReference
     private Espacio espacio;
 
     // Getters y Setters
