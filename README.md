@@ -25,17 +25,19 @@ Este proyecto utiliza `docker-compose` para el despliegue en un entorno de desar
 
    > **Nota:** Los archivos específicos para las configuraciones de WildFly estarán en la carpeta del repositorio `Archivos configuración`.
 
-   Para la ejecución del microservicio de reservas, es necesario tener WildFly 33.0.1.Final instalado.
+   Para la ejecución del microservicio de reservas, es necesario tener WildFly 33.0.1.Final instalado y configurado.
 
-   1. Dentro de la carpeta `wildfly-33.0.1.DatosReservas\standalone\configuration`, coloca el archivo `standalone.xml` especificado.
+   1. Dentro de la carpeta `wildfly-33.0.1.DatosReservas/modules/system/layers/base/com`, coloca la carpeta `mysql`
+
+   2. Dentro de la carpeta `wildfly-33.0.1.DatosReservas/standalone/configuration`, coloca el archivo `standalone.xml` especificado.
       
       * Este archivo configura el puerto para entrar a la consola en el `8083` y escucha solicitudes a través del `9993`.
 
-      Adicionalmente, coloca el archivo `enable-reactive-messaging.cli` en la carpeta `wildfly-33.0.1.DatosReservas\bin`.
+      Adicionalmente, coloca el archivo `enable-reactive-messaging.cli` en la carpeta `wildfly-33.0.1.DatosReservas/bin`.
 
-      * Una vez hecho esto, inicia el contenedor desde la consola con el archivo `.\standalone.sh` en la carpeta `wildfly-33.0.1.DatosReservas\bin`.
+      * Una vez hecho esto, inicia el contenedor desde la consola con el archivo `./standalone.sh` en la carpeta `wildfly-33.0.1.DatosReservas/bin`.
         
-      * Abre otra consola, navega a la carpeta `wildfly-33.0.1.DatosReservas\bin` y ejecuta el siguiente comando:
+      * Abre otra consola, navega a la carpeta `wildfly-33.0.1.DatosReservas/bin` y ejecuta el siguiente comando:
 
         ```bash
         .\jboss-cli.sh --connect --controller=localhost:9993 --file=enable-reactive-messaging.cli
@@ -43,14 +45,14 @@ Este proyecto utiliza `docker-compose` para el despliegue en un entorno de desar
 
       * Apaga el contenedor (CTRL + C).
 
-   2. Ahora necesitamos tener Kafka y Zookeeper corriendo. Esto se puede hacer con los siguientes comandos:
+   3. Ahora necesitamos tener Kafka y Zookeeper corriendo. Esto se puede hacer con los siguientes comandos:
 
       ```bash
-      bin\windows\zookeeper-server-start.sh config\zookeeper.properties
-      bin\windows\kafka-server-start.sh config/server.properties
+      ./bin/zookeeper-server-start.sh config/zookeeper.properties
+      ./bin/kafka-server-start.sh config/server.properties
       ```
 
-   3. Ahora se va a desplegar la aplicación de `gestionReservas`.  
+   4. Ahora se va a desplegar la aplicación de `gestionReservas`.  
       Para ello, inicia una vez más el contenedor.
 
       * Ve a través de la terminal al proyecto y en la carpeta raíz ejecuta:
