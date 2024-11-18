@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   api-gateway:
-    build:
-      context: ./ApiGateway
-      dockerfile: Dockerfile
+    image: api-gateway:latest
     ports:
       - "5050:8080"
     environment:
@@ -15,40 +13,58 @@ services:
       - sedes-service
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
 
   auth-service:
-    build:
-      context: ./AuthService
-      dockerfile: Dockerfile
+    image: auth-service:latest
     ports:
       - "9090:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
   
   espacios-service:
-    build:
-      context: ./EspacioService
-      dockerfile: Dockerfile
+    image: espacios-service:latest
     ports:
       - "8081:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
   
   sedes-service:
-    build:
-      context: ./SedesService
-      dockerfile: Dockerfile
+    image: sedes-service:latest
     ports:
       - "8082:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
 
 networks:
   app-network:
-    driver: bridge
+    driver: overlay
