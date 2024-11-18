@@ -1,5 +1,6 @@
 package com.javefamilia.gestionreservas.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.javefamilia.gestionreservas.Model.Enum.EstadoPago;
 import jakarta.persistence.*;
@@ -22,8 +23,10 @@ public class Reserva implements Serializable {
     @JsonProperty("horarioId")
     private String HorarioId;
     @JsonProperty("fechaAgendamiento")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate FechaAgendamiento;
     @JsonProperty("fechaReserva")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate FechaReserva;
 
     @Enumerated(EnumType.STRING)

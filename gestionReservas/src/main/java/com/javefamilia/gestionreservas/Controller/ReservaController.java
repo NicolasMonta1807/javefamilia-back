@@ -1,16 +1,19 @@
 package com.javefamilia.gestionreservas.Controller;
 
-import com.javefamilia.gestionreservas.Model.Espacio;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javefamilia.gestionreservas.Model.Reserva;
 import com.javefamilia.gestionreservas.Service.ReservaServiceBean;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
 
 import java.util.List;
 
 @Path("/")
 public class ReservaController {
+
     @Inject
     ReservaServiceBean reservaServiceBean;
 
@@ -27,6 +30,7 @@ public class ReservaController {
         return reservaServiceBean.loadReservaById(id);
     }
 
+    @Transactional
     @POST
     @Path("/reserva")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -34,6 +38,7 @@ public class ReservaController {
         reservaServiceBean.craeteReserva(reserva);
     }
 
+    @Transactional
     @PUT
     @Path("/reserva/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -41,6 +46,7 @@ public class ReservaController {
         reservaServiceBean.updateReserva(reserva, id);
     }
 
+    @Transactional
     @DELETE
     @Path("/reserva/{id}")
     public void deleteReserva(@PathParam("id") int id) {

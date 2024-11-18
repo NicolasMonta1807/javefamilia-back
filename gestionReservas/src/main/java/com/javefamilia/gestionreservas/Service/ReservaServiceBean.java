@@ -1,5 +1,7 @@
 package com.javefamilia.gestionreservas.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.javefamilia.gestionreservas.Model.Espacio;
 import com.javefamilia.gestionreservas.Model.Reserva;
 import jakarta.enterprise.context.ApplicationScoped;
