@@ -81,6 +81,9 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
 
   kafka:
     image: bitnami/kafka:latest
@@ -99,6 +102,9 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
   
   gestion-reservas:
     image: nicolasmonta1807/gestion-reservas
@@ -109,6 +115,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - mp.messaging.connector.smallrye-kafka.bootstrap.servers=kafka:9092
     depends_on:
+      - zookeeper
       - kafka
     networks:
       - app-network
