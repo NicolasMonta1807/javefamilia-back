@@ -34,6 +34,9 @@ public class EspacioEventHandler {
             espacio.setNonAffiliateRate(espacioEvent.getNonAffiliateRate());
             espacio.setBeneficiaryRate(espacioEvent.getBeneficiaryRate());
             espacio.setHorarios(espacioEvent.getHorarios());
+            for(int i=0;i<espacio.getHorarios().size();i++){
+                espacio.getHorarios().get(i).setEspacio(espacio);
+            }
             em.merge(espacio);
 
         } else if (espacioEvent.getEventType() == EspacioEventType.ESPACIO_DELETED) {
