@@ -21,7 +21,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.hostname == eva00
+          - node.role == manager
 
   auth-service:
     image: nicolasmonta1807/auth-service:latest
