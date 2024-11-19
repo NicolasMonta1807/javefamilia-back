@@ -38,7 +38,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    [Authorize(Roles = "Operario,Administrador")]
+    [Authorize(Roles = "Administrador, Operario")]
     public async Task<IActionResult> Register([FromBody] RegisterUserDto request)
     {
         var success = await _authService.RegisterAffiliateUserAsync(request);
