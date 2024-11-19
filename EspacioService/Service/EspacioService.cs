@@ -32,7 +32,6 @@ namespace EspacioService.Service
 
         public async Task CreateEspacioAsync(Espacio espacio)
         {
-
             for (var i = 0; i < espacio.Horarios.Count; i++)
                 espacio.Horarios[i].Id = ObjectId.GenerateNewId().ToString();
             await _espacios.InsertOneAsync(espacio);
@@ -48,7 +47,8 @@ namespace EspacioService.Service
                 affiliateRate: espacio.AffiliateRate,
                 nonAffiliateRate: espacio.NonAffiliateRate,
                 beneficiaryRate: espacio.BeneficiaryRate,
-                horarios: espacio.Horarios
+                horarios: espacio.Horarios,
+                sedeId: espacio.SedeId // New field
             ));
         }
 
@@ -84,7 +84,8 @@ namespace EspacioService.Service
                 affiliateRate: espacio.AffiliateRate,
                 nonAffiliateRate: espacio.NonAffiliateRate,
                 beneficiaryRate: espacio.BeneficiaryRate,
-                horarios: espacio.Horarios
+                horarios: espacio.Horarios,
+                sedeId: espacio.SedeId
             ));
         }
 

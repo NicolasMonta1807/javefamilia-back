@@ -7,50 +7,42 @@ import com.javefamilia.gestionreservas.Model.Enum.EspacioEventType;
 import com.javefamilia.gestionreservas.Model.HorarioEspacio;
 
 import java.sql.Time;
-import java.time.Duration;
 import java.util.List;
 
 public class EspacioEvent {
-
     @JsonProperty("eventType")
     private EspacioEventType EventType;
-
     @JsonProperty("Id")
     private String Id;
-
     @JsonProperty("Name")
     private String Name;
-
     @JsonProperty("Description")
     private String Description;
-
     @JsonProperty("OpeningTime")
     @JsonDeserialize(using = TimeDeserializer.class)
     private Time OpeningTime;
-
     @JsonProperty("ClosingTime")
     @JsonDeserialize(using = TimeDeserializer.class)
     private Time ClosingTime;
-
     @JsonProperty("Capacity")
     private int Capacity;
-
     @JsonProperty("AffiliateRate")
     private double AffiliateRate;
-
     @JsonProperty("NonAffiliateRate")
     private double NonAffiliateRate;
-
     @JsonProperty("BeneficiaryRate")
     private double BeneficiaryRate;
-
     @JsonProperty("Horarios")
     private List<HorarioEspacio> Horarios;
 
-    // Constructor con todos los parámetros
-    public EspacioEvent(EspacioEventType eventType, String id, String name, String description,
-                        Time openingTime, Time closingTime, int capacity, double affiliateRate,
-                        double nonAffiliateRate, double beneficiaryRate, List<HorarioEspacio> horarios) {
+    // New property for SedeId
+    @JsonProperty("SedeId")
+    private String SedeId;
+
+    // Constructor with all parameters
+    public EspacioEvent(EspacioEventType eventType, String id, String name, String description, Time openingTime,
+            Time closingTime, int capacity, double affiliateRate, double nonAffiliateRate,
+            double beneficiaryRate, List<HorarioEspacio> horarios, String sedeId) {
         EventType = eventType;
         Id = id;
         Name = name;
@@ -62,9 +54,10 @@ public class EspacioEvent {
         NonAffiliateRate = nonAffiliateRate;
         BeneficiaryRate = beneficiaryRate;
         Horarios = horarios;
+        SedeId = sedeId;
     }
 
-    // Constructor con solo eventType e id
+    // Constructor with only eventType and id
     public EspacioEvent(EspacioEventType eventType, String id) {
         EventType = eventType;
         Id = id;
@@ -73,7 +66,7 @@ public class EspacioEvent {
     public EspacioEvent() {
     }
 
-    // Getters y Setters
+    // Getters and Setters
     public EspacioEventType getEventType() {
         return EventType;
     }
@@ -160,5 +153,13 @@ public class EspacioEvent {
 
     public void setHorarios(List<HorarioEspacio> horarios) {
         this.Horarios = horarios;
+    }
+
+    public String getSedeId() {
+        return SedeId;
+    }
+
+    public void setSedeId(String sedeId) {
+        this.SedeId = sedeId;
     }
 }

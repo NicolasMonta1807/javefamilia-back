@@ -17,7 +17,7 @@ public class EspacioController {
     EspacioServiceBean espacioServiceBean;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)  // Esto indica que la respuesta será en JSON
+    @Produces(MediaType.APPLICATION_JSON) // Esto indica que la respuesta será en JSON
     @Path("/")
     public List<Espacio> getEspacio() {
         return espacioServiceBean.loadAllTimedEntries();

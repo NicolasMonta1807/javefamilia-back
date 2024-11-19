@@ -34,6 +34,10 @@ public class EspacioController : ControllerBase
     [Authorize(Roles = "Operario,Administrador")]
     public async Task<IActionResult> CreateEspacio([FromBody] Espacio espacio)
     {
+        if (string.IsNullOrWhiteSpace(espacio.SedeId))
+        {
+            return BadRequest("SedeId is required.");
+        }
         await _espacioService.CreateEspacioAsync(espacio);
         return Ok();
     }

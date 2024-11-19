@@ -7,7 +7,7 @@ public class EspacioEvent
 {
     public EspacioEvent(EspacioEventType eventType, string id, string name, string description,
         TimeSpan openingTime, TimeSpan closingTime, int capacity, double affiliateRate,
-        double nonAffiliateRate, double beneficiaryRate, List<HorarioEspacio> horarios)
+        double nonAffiliateRate, double beneficiaryRate, List<HorarioEspacio> horarios, string sedeId)
     {
         EventType = eventType;
         Id = id;
@@ -20,6 +20,7 @@ public class EspacioEvent
         NonAffiliateRate = nonAffiliateRate;
         BeneficiaryRate = beneficiaryRate;
         Horarios = horarios;
+        SedeId = sedeId;
     }
 
     public EspacioEvent(EspacioEventType eventType, string id)
@@ -49,4 +50,6 @@ public class EspacioEvent
     [JsonProperty("BeneficiaryRate")] public double BeneficiaryRate { get; set; }
 
     [JsonProperty("Horarios")] public List<HorarioEspacio> Horarios { get; set; } = new();
+    
+    [JsonProperty("SedeId")] public string? SedeId { get; set; }
 }

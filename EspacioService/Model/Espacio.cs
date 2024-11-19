@@ -18,4 +18,5 @@ public class Espacio
     public double NonAffiliateRate { get; set; }
     public double BeneficiaryRate { get; set; }
     public List<HorarioEspacio> Horarios { get; set; } = new();
+    public required string SedeId { get; set; }
 }
