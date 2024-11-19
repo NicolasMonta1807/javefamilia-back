@@ -557,12 +557,28 @@
                 <host name="default-host" alias="localhost">
                     <location name="/" handler="welcome-content" />
                     <http-invoker http-authentication-factory="application-http-authentication" />
+                    <filter-ref name="Access-Control-Allow-Origin" />
+                    <filter-ref name="Access-Control-Allow-Methods" />
+                    <filter-ref name="Access-Control-Allow-Headers" />
+                    <filter-ref name="Access-Control-Allow-Credentials" />
                 </host>
             </server>
             <servlet-container name="default">
                 <jsp-config />
                 <websockets />
             </servlet-container>
+            <filters>
+                <response-header name="Access-Control-Allow-Origin"
+                    header-name="Access-Control-Allow-Origin" header-value="*" />
+                <response-header name="Access-Control-Allow-Methods"
+                    header-name="Access-Control-Allow-Methods"
+                    header-value="GET, POST, PUT, DELETE, OPTIONS" />
+                <response-header name="Access-Control-Allow-Headers"
+                    header-name="Access-Control-Allow-Headers"
+                    header-value="Origin, Content-Type, Accept, Authorization" />
+                <response-header name="Access-Control-Allow-Credentials"
+                    header-name="Access-Control-Allow-Credentials" header-value="true" />
+            </filters>
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content" />
             </handlers>

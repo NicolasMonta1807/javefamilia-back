@@ -23,22 +23,25 @@ public class ReservaController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/reservas")
-    @RolesAllowed({ "Afiliado" , "NoAfiliado"})
+    // @RolesAllowed({ "Afiliado", "NoAfiliado", "Administrador", "Operario" })
     public List<Reserva> getReservas() {
+        System.out.println(jwt.getClaim("role"));
         return reservaServiceBean.loadAllTimedEntries();
     }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/reserva/{id}")
+    @Path("/reservas/{id}")
+    // @RolesAllowed({ "Afiliado", "NoAfiliado", "Administrador", "Operario" })
     public Reserva getReservaById(@PathParam("id") int id) {
         return reservaServiceBean.loadReservaById(id);
     }
 
     @Transactional
     @POST
-    @Path("/reserva")
+    @Path("/reservas")
     @Consumes(MediaType.APPLICATION_JSON)
-    @RolesAllowed({ "Afiliado" , "NoAfiliado"})
+    // @RolesAllowed({ "Afiliado", "NoAfiliado", "Administrador", "Operario" })
     public void createReserva(Reserva reserva) {
         String userId = jwt.getClaim("sub");
         reserva.setUsuarioId(userId);
@@ -47,17 +50,17 @@ public class ReservaController {
 
     @Transactional
     @PUT
-    @Path("/reserva/{id}")
+    @Path("/reservas/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    @RolesAllowed({ "Afiliado" , "NoAfiliado"})
+    // @RolesAllowed({ "Afiliado", "NoAfiliado", "Administrador", "Operario" })
     public void updateReserva(Reserva reserva, @PathParam("id") int id) {
         reservaServiceBean.updateReserva(reserva, id);
     }
 
     @Transactional
     @DELETE
-    @Path("/reserva/{id}")
-    @RolesAllowed({ "Afiliado" , "NoAfiliado"})
+    @Path("/reservas/{id}")
+    // @RolesAllowed({ "Afiliado", "NoAfiliado", "Administrador", "Operario" })
     public void deleteReserva(@PathParam("id") int id) {
         reservaServiceBean.deleteReserva(id);
     }
