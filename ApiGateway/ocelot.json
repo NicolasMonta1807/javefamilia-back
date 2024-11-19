@@ -279,6 +279,131 @@
         "AuthenticationProviderKey": "BearerAuth",
         "AllowedScopes": []
       }
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/espacio",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/espacio",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "SwaggerKey": "espacios",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/espacio/{id}",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/espacio/{id}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "SwaggerKey": "reservas"
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reservas",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/reservas",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "SwaggerKey": "reservas"
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva/{id}",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/reserva/{id}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "SwaggerKey": "reservas",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/reserva",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "SwaggerKey": "reservas",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva{id}",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/reserva{id}",
+      "UpstreamHttpMethod": [
+        "Put"
+      ],
+      "SwaggerKey": "reservas",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva{id}",
+      "DownstreamScheme":"http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/gestionReservas.gestionReservas/reservas/reserva{id}",
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
+      "SwaggerKey": "reservas",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "BearerAuth",
+        "AllowedScopes": []
+      }
     }
   ],
   "SwaggerEndPoints": [
@@ -309,6 +434,16 @@
           "Name": "Espacios API",
           "Version": "v1",
           "Url": "http://espacios-service:8080/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "reservas",
+      "Config": [
+        {
+          "Name": "Reservas API",
+          "Version": "v1",
+          "Url": "http://localhost:8083/swagger/v1/swagger.json"
         }
       ]
     }
