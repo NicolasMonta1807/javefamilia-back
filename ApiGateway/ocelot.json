@@ -282,10 +282,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/espacio",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -293,7 +293,7 @@
       "UpstreamHttpMethod": [
         "Get"
       ],
-      "SwaggerKey": "espacios",
+      "SwaggerKey": "reservas",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "BearerAuth",
         "AllowedScopes": []
@@ -301,10 +301,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/espacio/{id}",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -316,10 +316,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reservas",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -331,10 +331,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva/{id}",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -350,10 +350,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -369,10 +369,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva{id}",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -388,10 +388,10 @@
     },
     {
       "DownstreamPathTemplate": "/gestionReservas.gestionReservas/reservas/reserva{id}",
-      "DownstreamScheme":"http",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "gestion-reservas",
           "Port": 8083
         }
       ],
@@ -443,7 +443,7 @@
         {
           "Name": "Reservas API",
           "Version": "v1",
-          "Url": "http://localhost:8083/swagger/v1/swagger.json"
+          "Url": "http://gestion-reservas:8080/swagger/v1/swagger.json"
         }
       ]
     }
