@@ -25,7 +25,6 @@ public class ReservaServiceBean {
     public Reserva loadReservaById(int id) {
         return em.find(Reserva.class, id);
     }
-    //Tal vez verificar que exista el espacio que se va a reservar
     public void craeteReserva(Reserva reserva) {
         em.persist(reserva);
     }
