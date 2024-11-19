@@ -15,11 +15,12 @@ import jakarta.persistence.*;
  *
  */
 @Entity
-@NamedQuery(name="HorarioEspacio.findAll", query="SELECT h FROM HorarioEspacio h")
+@NamedQuery(name = "HorarioEspacio.findAll", query = "SELECT h FROM HorarioEspacio h")
+@Table(name = "horarioespacio")
 public class HorarioEspacio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @JsonProperty("Id")  // Mapea explícitamente "Id" del JSON al atributo "id" en Java
+    @JsonProperty("Id") // Mapea explícitamente "Id" del JSON al atributo "id" en Java
     private String id;
 
     @JsonProperty("Availavility")
